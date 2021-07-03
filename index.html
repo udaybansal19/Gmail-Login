@@ -14,11 +14,12 @@
     <script>
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
-            var ele = document.getElementsByClassName("card").style.display = "block";
+            document.getElementById("info").style.display = "block";
             document.getElementById("profile-photo").src = profile.getImageUrl();
             document.getElementById("Name").innerHTML = profile.getName();
             document.getElementById("Email").innerHTML = profile.getEmail();
         }
+
     </script>
     <title>Gmail Sign-in</title>
   </head>
@@ -29,8 +30,8 @@
             <div class="col-6" align="right">
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </div>
-            <div class="col-6" id="info">
-                <div class="card" style="align-items: center; width: 20vw; display: none;">
+            <div class="col-6">
+                <div class="card" id="info" style="align-items: center; width: 20vw; display: none;">
                     <div class="card-body">
                         <img id="profile-photo" style="align: center; height: 20%; width: 20%;">
                         <p id="Name"></p>
