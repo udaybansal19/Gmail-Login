@@ -15,9 +15,20 @@
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
             document.getElementById("info").style.display = "block";
+            document.getElementById("signin").style.display = "none";
+            document.getElementById("signout").style.display = "block";
             document.getElementById("profile-photo").src = profile.getImageUrl();
             document.getElementById("Name").innerHTML = profile.getName();
             document.getElementById("Email").innerHTML = profile.getEmail();
+        }
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+                document.getElementById("info").style.display = "none";
+                document.getElementById("signin").style.display = "block";
+                document.getElementById("signout").style.display = "none";
+            });
         }
 
     </script>
@@ -28,7 +39,8 @@
     <div style="margin-top: 40vh;">
         <div class="row">
             <div class="col-6" align="right">
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div class="g-signin2" data-onsuccess="onSignIn" id="signin" style="display: block;"></div>
+            <button onclick="signOut()" id="signout" style="display: none;">Sign out</button>
             </div>
             <div class="col-6">
                 <div class="card" id="info" style="align-items: center; width: 20vw; display: none;">
